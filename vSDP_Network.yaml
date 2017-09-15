@@ -1,1 +1,78 @@
+########################################################
+###          Generic HOT file for vSDP NWs           ###
+########################################################
+heat_template_version: 2017-09-15
+description: Generic HOT file for vSDP network creation
+parameter_groups:
+- label: vSDP_Neutron_Nets
+  description: Parameters for vSDP Neutron Networks creation
+  parameters:
+     - Host_Nw_Name
+     - Host_Nw_Vlan
+     - Host_Nw_Physnet
+#     - IO_Nw_Name
+#     - IO_Nw_Vlan
+#     - IO_Nw_Physnet
+#     - OAM_Nw_Name
+#     - OAM_Nw_Vlan
+#     - OAM_Nw_Physnet
+#     - ChTraffic_Nw_Name
+#     - ChTraffic_Nw_Vlan
+#     - ChTraffic_Nw_Physnet
+- label: vSDP_Neutron_subnets
+  description: Parameters for vMTAS Neutron Subnets creation
+  parameters:
+    - Host_Nw_Subnet_Name
+    - Host_Nw_Subnet_CIDR
+    - Host_Nw_Gateway_Addr
+#    - IO_Nw_Subnet_Name
+#    - IO_Nw_Subnet_CIDR
+#    - OAM_Nw_Subnet_Name
+#    - OAM_Nw_Subnet_CIDR
+#    - ChTraffic_Nw_Subnet_Name
+#    - ChTraffic_Nw_CIDR 
+ parameters:
+  Host_Nw_Name:
+    description: Name of the host Neutron network
+    default: host_nw
+    type: string
+  Host_Nw_Vlan:
+    description: VLAN segmentation id for host network
+    type: number
+  Host_Nw_Physnet:
+    description: Physical network mapping for of host network
+    type: string
+  Host_Nw_Subnet_Name:
+    description: Name of the host subnet
+    default: host_nw_subnet
+    type: string
+  Host_Nw_Subnet_CIDR:
+    description: CIDR used for the host IPv4 subnet
+    type: string
+  Host_Nw_Gateway_Addr:
+    description: Gateway address of host 
+    type: string
+resources:    
+###Creating networks###
+  host_nw:
+    properties:
+      name: { list_join: ['_', [{get_param: "OS::stack_name"}, {get_param: Host_Nw_Name}]]}
+      network_type: vlan
+      physical_network: { get_param: Host_Nw_Physnet }
+      segmentation_id: { get_param: Host_Nw_Vlan }
+      shared: false
+    type: OS::Neutron::ProviderNet
+###Creating subnets###
+  host_subnet:
+    properties:
+      cidr: { get_param: Host_Nw_Subnet_CIDR }
+      enable_dhcp: false
+      gateway_ip: { get_param: Host_Nw_Gateway_Addr }
+      name: { list_join: ['_', [{get_param: "OS::stack_name"}, {get_param: Host_Nw_Subnet_Name}]]}
+      network: { get_resource: host_nw }
+    type: OS::Neutron::Subnet
+    depends_on: host_nw
+
+
+  
 
