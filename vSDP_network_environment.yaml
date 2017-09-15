@@ -1,1 +1,22 @@
 
+####################################################
+###        Environment file for vSDP NW         ###
+####################################################
+parameters:
+#######################################
+#############PARAMETERS FOR############
+##########NEUTRON NETs/SUBNETs#########
+################CREATION###############
+#######################################
+###Name to be used for the O&M network###
+  Host_Nw_Name: host_nw
+###Segmentation ID to be used for the O&M network ###
+  Host_Nw_Vlan: 3
+###Physical network mapping to be used for the O&M network###
+  Host_Nw_Physnet: default
+###Name to be used for the O&M IPv4 subnetwork###
+  Host_Nw_Subnet: host_nw_subnet
+###CIDR to be used for the O&M subnet###
+  Host_Nw_Subnet_CIDR: 10.169.114.128/25
+###Gateway address used for the Operation and Maintenance IPv4 subnet###
+  Host_Nw_Subnet_Gateway_Addr: 10.169.114.129
