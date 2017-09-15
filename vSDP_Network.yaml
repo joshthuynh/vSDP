@@ -1,7 +1,7 @@
 ########################################################
 ###          Generic HOT file for vSDP NWs           ###
 ########################################################
-heat_template_version: 2017-09-15
+heat_template_version: 2015-04-30
 description: Generic HOT file for vSDP network creation
 parameter_groups:
 - label: vSDP_Neutron_Nets
