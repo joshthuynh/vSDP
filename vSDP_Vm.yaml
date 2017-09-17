@@ -1,0 +1,73 @@
+##########################################################
+###            Generic HOT file for vMTAS              ###
+##########################################################
+###  The following resources must exist:               ###
+###                - vSDP Flavors                      ###
+###                - vSDP Glance image                 ###
+###                - host_nw Neutron network           ###
+###                - host_nw_subnet Neutron subnet     ###
+##########################################################
+heat_template_version: 2015-04-30
+description: Generic HOT file for vSBG
+parameter_groups:
+- label: Availability_Zones
+  description: Name of Availability zones used for instance creation
+  parameters:
+  - availability_zone_name
+- label: Flavors
+  description: Name of Nova flavors for  VMs creation
+  parameters:
+  - vSDP_flavor_name
+- label: images
+  description: Name of the RHS image to boot the VMs with.
+  parameters:
+  - vSDP_glance_image_name
+- label: vSDP_Neutron_Nets
+  description: Parameters for vSDP Neutron Networks creation
+  parameters:
+  - Host_nw_name
+- label: vSDP_Neutron_subnets
+  description: Parameters for vMTAS Neutron Subnets creation
+  parameters:
+  - Host_nw_subnet_name
+- label: vSDP_site_specific_parameters
+  description: Site specific parameters to be injected to vSDP node
+  parameters:
+  - Host_IP_addr
+  
+parameters:
+  availability_zone_name:
+    description: Availability zone used for SC-1 instance creation
+    default: nova
+    type: string
+  vSDP_flavor_name:
+    description: Flavor to use for PL VMs
+    type: string
+  vSDP_glance_image_name:
+    description: Name of the Glance image to boot SC-1, SC-2 with
+    type: string
+    constraints:
+      - custom_constraint: glance.image
+  Host_nw_name
+    description: Name of the Host Neutron network
+    default: host_nw
+    type: string
+  Host_nw_subnet_name:
+    description: Name of the Host subnet
+    default: host_nw_subnet
+    type: string
+  Host_IP_addr:
+    description: The IPv4 address over which the systems will communicate with the VNF. The address should be selected from the host subnet specified by the value of Host_nw_subnet_CIDR.
+    label: The IPv4 address for the host interface
+    default: none
+    type: string
+    constraints:
+    - allowed_pattern: '(?:[0-9]{1,3}\.){3}[0-9]{1,3}|none'
+  
+  
+    
+
+
+
+  
+
