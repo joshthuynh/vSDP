@@ -1,0 +1,47 @@
+####################################################
+###          Environment file for vSDP           ###
+####################################################
+###  Before updating this file it is important   ###
+###  that the required network architecture for  ###
+###  vSDP  has been consulted and understood.    ###
+###                                              ###
+### Resources must exist prior to orchestration: ###
+###   - Flavor used for vSDP                     ###
+###   - Glance Image for vSDP                    ###
+####################################################
+parameters:
+#######################################
+###########AVAILABILITY ZONE###########
+#######################################
+##Availability zone for vSDP instance creation ###
+ availability_zone_name: nova
+
+#######################################
+#################FLAVOR################
+#######################################
+###Name of existing Nova flavor for vSDP Host VMs###
+  vSDP_flavor_name: vSDP_Host
+
+#######################################
+#############IMAGES####################
+#######################################
+###Name of the existing Glance image to create vSDP Host volumes from###
+  vSDP_glance_image_name: vSDP_RHEL
+
+#######################################
+#############NEUTRON NET###############
+############NEUTRON SUBNET#############
+#######################################
+###Name of the Host Neutron network###
+  Host_nw_name: host_nw
+###Name of the Host subnet###
+  Host_nw_subnet_name: host_nw_subnet
+
+#######################################
+###########PARAMETERS to be############
+#############injected to###############
+#############vSDP node ################
+###Label: The IPv4 address for the VM with the host name ###
+###Description: This is the IPv4 address of the VM that will have the host name of vSDP within the cluster. The address should be selected from the host_nw_subnet specified by the value of Host_Nw_Subnet_CIDR###
+  Host_IP_addr: 10.121.128.117
+
