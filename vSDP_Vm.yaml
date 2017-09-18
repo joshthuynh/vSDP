@@ -1,5 +1,5 @@
 ##########################################################
-###            Generic HOT file for vMTAS              ###
+###            Generic HOT file for vSDP               ###
 ##########################################################
 ###  The following resources must exist:               ###
 ###                - vSDP Flavors                      ###
@@ -27,7 +27,7 @@ parameter_groups:
   parameters:
   - Host_nw_name
 - label: vSDP_Neutron_subnets
-  description: Parameters for vMTAS Neutron Subnets creation
+  description: Parameters for vSDP Neutron Subnets creation
   parameters:
   - Host_nw_subnet_name
 - label: vSDP_site_specific_parameters
