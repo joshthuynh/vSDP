@@ -1,0 +1,11 @@
+-Create aggregate SC and PL and add hosts.
+
+nova aggregate-create vSDP_host_aggregates
+nova aggregate-add-host vSDP_host_aggregates compute-1-2.domain.tld
+nova aggregate-set-metadata vSDP_host_aggregates group=vSDP_Host
+
+-Create flavors
+nova flavor-create vSDP_Flavor auto 39936 20 8
+nova flavor-key vSDP_Flavor set hw:mem_page_size=1048576
+nova flavor-key vSDP_Flavor set hw:cpu_policy=dedicated
+nova flavor-key vSDP_Flavor set aggregate_instance_extra_specs:group=vSDP_Host
