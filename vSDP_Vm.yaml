@@ -64,12 +64,6 @@ parameters:
     constraints:
     - allowed_pattern: '(?:[0-9]{1,3}\.){3}[0-9]{1,3}|none'
 resources:
-###Creating Server Group###
-  server_group:
-    type: OS::Nova::ServerGroup
-    properties:
-      name: { list_join: ['_', [{ get_param: "OS::stack_name" }, ServerGroup]] }
-      policies: [anti-affinity]
 ###Creating Neutron ports###
   port_vSDP_eth0:
     properties:
