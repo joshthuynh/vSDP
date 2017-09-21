@@ -4,7 +4,7 @@ nova server-group-create josh-Anti anti-affinity
 
 nova aggregate-create vSDP_host_aggregates
 nova aggregate-add-host vSDP_host_aggregates compute-1-2.domain.tld
-nova aggregate-set-metadata vSDP_host_aggregates group=josh-Anti
+nova aggregate-set-metadata vSDP_host_aggregates group=vSDP_Host
 
 -Create flavors
 nova flavor-create vSDP_Flavor auto 39936 20 8
